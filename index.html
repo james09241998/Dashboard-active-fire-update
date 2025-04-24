@@ -57,13 +57,26 @@
       const nextHour = Math.floor(nextMinutes / 60) % 24;
       const nextMinute = nextMinutes % 60;
 
-      return `${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')} (GMT+2)`;
+      const formattedTime = `${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')} (GMT+2)`;
+
+      // Log the value to the console for debugging
+      console.log(`Next update for ${baseIntervalMinutes} min interval: ${formattedTime}`);
+      
+      return formattedTime;
     }
 
     // Ensure the functions are being called and the update times are set
     document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById("modis-next").textContent = getNextUpdate(240); // 4 hours
-      document.getElementById("viirs-next").textContent = getNextUpdate(15);  // 15 minutes
+      // Log the actual values that will be used for display
+      const modisTime = getNextUpdate(240); // 4 hours
+      const viirsTime = getNextUpdate(15);  // 15 minutes
+
+      console.log(`MODIS Next Update: ${modisTime}`);
+      console.log(`VIIRS Next Update: ${viirsTime}`);
+
+      // Set the content for display
+      document.getElementById("modis-next").textContent = modisTime;
+      document.getElementById("viirs-next").textContent = viirsTime;
     });
   </script>
 </body>
