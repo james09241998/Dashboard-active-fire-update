@@ -59,3 +59,9 @@
 
       return `${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')} (GMT+2)`;
     }
+
+    document.getElementById("modis-next").textContent = getNextUpdate(240); // 4 hours
+    document.getElementById("viirs-next").textContent = getNextUpdate(15);  // 15 minutes
+  </script>
+</body>
+</html>
