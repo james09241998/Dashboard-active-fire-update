@@ -69,6 +69,7 @@
     // Ensure the functions are being called and the update times are set
     document.addEventListener("DOMContentLoaded", function() {
       // Log the actual values that will be used for display
+      console.log("DOM fully loaded. Now setting the update times.");
       const modisTime = getNextUpdate(240); // 4 hours
       const viirsTime = getNextUpdate(15);  // 15 minutes
 
@@ -77,8 +78,4 @@
 
       // Set the content for display
       document.getElementById("modis-next").textContent = modisTime;
-      document.getElementById("viirs-next").textContent = viirsTime;
-    });
-  </script>
-</body>
-</html>
+      document.getElementById("viirs
