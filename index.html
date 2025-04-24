@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fire Data Update Times</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h2 {
+      color: #d35400;
+    }
+    .update-time {
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔥 Fire Data Update Schedule</h2>
+
+  <div class="update-time">
+    <strong>MODIS NRT:</strong> Updates every 4 hours — approx.<br>
+    <span id="modis-times"></span>
+  </div>
+
+  <div class="update-time">
+    <strong>VIIRS NRT:</strong> Updates every 15 minutes — approx.<br>
+    <span id="viirs-times"></span>
+  </div>
+
+  <script>
+    function getModisTimes() {
+      const hours = [2, 6, 10, 14, 18, 22];
+      const times = hours.map(h => `${String(h).padStart(2, '0')}:00 UTC`);
+      return times.join(", ");
+    }
+
+    function getViirsTimes() {
+      const times = [];
+      for (let h = 0; h < 24; h++) {
+        for (let m = 0; m < 60; m += 15) {
+          times.push(`${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} UTC`);
+        }
+      }
+      return times.join(", ");
+    }
+
+    document.getElementById("modis-times").textContent = getModisTimes();
+    document.getElementById("viirs-times").textContent = getViirsTimes();
+  </script>
+</body>
+</html>
