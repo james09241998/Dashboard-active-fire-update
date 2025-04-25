@@ -9,7 +9,7 @@
     body {
       font-family: 'Nunito', 'Helvetica Neue', sans-serif;
       background-color: #9fa7a3;
-      color: #363636;
+      color: white;
       padding: 0;
       margin: 0;
       height: 100vh;
@@ -22,7 +22,7 @@
 
     h2 {
       font-size: 25px;
-      color: #ffffff;
+      color: white !important; /* Force white title */
       font-weight: bold;
       margin-top: 20px;
       text-align: center;
@@ -31,7 +31,6 @@
     .update-time {
       margin: 10px 0;
       font-size: 20px;
-      color: #363636;
       text-align: center;
     }
   </style>
@@ -59,20 +58,12 @@
       const nextHour = Math.floor(nextMinutes / 60) % 24;
       const nextMinute = nextMinutes % 60;
 
-      const formattedTime = `${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')} (GMT+2)`;
-
-      console.log(`Next update for ${baseIntervalMinutes} min interval: ${formattedTime}`);
-      
-      return formattedTime;
+      return `${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')} (GMT+2)`;
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-      console.log("DOM fully loaded. Now setting the update times.");
-      const modisTime = getNextUpdate(240); // 4 hours
-      const viirsTime = getNextUpdate(15);  // 15 minutes
-
-      console.log(`MODIS Next Update: ${modisTime}`);
-      console.log(`VIIRS Next Update: ${viirsTime}`);
+    document.addEventListener("DOMContentLoaded", () => {
+      const modisTime = getNextUpdate(240); // Every 4 hours
+      const viirsTime = getNextUpdate(15);  // Every 15 minutes
 
       document.getElementById("modis-next").textContent = modisTime;
       document.getElementById("viirs-next").textContent = viirsTime;
