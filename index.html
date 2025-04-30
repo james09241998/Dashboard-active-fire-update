@@ -9,29 +9,37 @@
     body {
       font-family: 'Nunito', 'Helvetica Neue', sans-serif;
       background-color: #9fa7a3;
-      color: #363636 !important; /* Force other colour title */
+      color: #363636;
       padding: 0;
       margin: 0;
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       align-items: center;
       overflow: hidden;
     }
 
     h2 {
       font-size: 25px;
-      color: white !important; /* Force white title */
+      color: white;
       font-weight: bold;
-      margin-top: 20px;
+      margin: 20px 0 10px 0;
       text-align: center;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 20px 0;
     }
 
     .update-time {
-      margin: 10px 0;
+      margin-top: 80px; /* push below the title */
       font-size: 20px;
       text-align: center;
+    }
+
+    .update-time + .update-time {
+      margin-top: 10px; /* spacing between MODIS and VIIRS */
     }
 
     .update-time span {
