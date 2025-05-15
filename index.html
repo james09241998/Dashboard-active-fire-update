@@ -54,15 +54,15 @@
     function getNextUpdate(baseIntervalMinutes) {
       const now = new Date();
       const offsetMs = 2 * 60 * 60 * 1000; // GMT+2 offset
-      const localNow = new Date(now.getTime() + offsetMs);
+      const gmtPlus2 = new Date(now.getTime() + offsetMs);
 
-      const totalMinutes = localNow.getUTCHours() * 60 + localNow.getUTCMinutes();
+      const totalMinutes = gmtPlus2.getUTCHours() * 60 + gmtPlus2.getUTCMinutes();
       const nextMinutes = Math.ceil(totalMinutes / baseIntervalMinutes) * baseIntervalMinutes;
 
       const nextHour = Math.floor(nextMinutes / 60) % 24;
       const nextMinute = nextMinutes % 60;
 
-      return `${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')} (GMT+2)`;
+      return `${String(nextHour).padStart(2, '0')}:${String(nextMinute).padStart(2, '0')}`;
     }
 
     document.addEventListener("DOMContentLoaded", () => {
